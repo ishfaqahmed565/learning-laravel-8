@@ -8,17 +8,14 @@
 </head>
 <link rel="stylesheet" href="/app.css">
 <body>
-    <article>        
-    <h1><a href="/posts/my-first-post">My First Post</a></h1>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil deserunt animi voluptatibus! Quo, facilis. Ipsum blanditiis provident nemo illo saepe nisi modi id in quos repellendus eveniet at veritatis, minima voluptas, earum amet ad aliquid quisquam explicabo. Eaque iure mollitia dolor ipsum eligendi saepe assumenda illum? Blanditiis ad hic illo.</p>    
-    </article>
-    <article>
-    <h1><a href="/posts/my-second-post">My Second Post</a></h1>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil deserunt animi voluptatibus! Quo, facilis. Ipsum blanditiis provident nemo illo saepe nisi modi id in quos repellendus eveniet at veritatis, minima voluptas, earum amet ad aliquid quisquam explicabo. Eaque iure mollitia dolor ipsum eligendi saepe assumenda illum? Blanditiis ad hic illo.</p>    
-    </article>
-    <article>
-    <h1><a href="/posts/my-third-post">My Third Post</a></h1>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil deserunt animi voluptatibus! Quo, facilis. Ipsum blanditiis provident nemo illo saepe nisi modi id in quos repellendus eveniet at veritatis, minima voluptas, earum amet ad aliquid quisquam explicabo. Eaque iure mollitia dolor ipsum eligendi saepe assumenda illum? Blanditiis ad hic illo.</p>    
-    </article>
+    
+        <?php foreach($posts as $post): ?>
+           
+            <article>
+                <h1><a href="posts/<?=$post->slug?>"><?=$post->title?></a></h1>
+                <div><?=$post->excerpt?></div>
+            </article>
+        <?php endforeach; ?>
+    
 </body>
 </html>
