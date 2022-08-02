@@ -21,10 +21,10 @@ Route::get('/', function () {
     return view('posts',compact('posts'));
 });
 
-Route::get('/posts/{post}', function ($slug) {
+Route::get('/posts/{post}', function ($id) {
     // get a post using its slug and return a view
-    $post = Post::find($slug);
+    $post = Post::findOrFail($id);
     return view('post',compact('post'));
 
-})->where('post','[A-z_\-]+');
+});
 
