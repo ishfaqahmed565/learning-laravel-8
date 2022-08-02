@@ -21,9 +21,9 @@ Route::get('/', function () {
     return view('posts',compact('posts'));
 });
 
-Route::get('/posts/{post}', function ($id) {
+Route::get('/posts/{post:slug}', function (Post $post) {
     // get a post using its slug and return a view
-    $post = Post::findOrFail($id);
+    
     return view('post',compact('post'));
 
 });
