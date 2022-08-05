@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\User;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,7 +18,7 @@ use App\Models\Category;
 
 Route::get('/', function () {
     
-    $posts = Post::with('category')->get();
+    $posts = Post::latest()->get();
  
     return view('posts',compact('posts'));
 });
@@ -28,11 +30,16 @@ Route::get('/posts/{post:slug}', function (Post $post) {
 
 });
 
-Route::get('categories/{category:slug}', function (Category $category) {
+Route::get('/categories/{category:slug}', function (Category $category) {
     
     $posts = $category->posts;
     
- 
+    return view('posts',compact('posts'));
+});
+Route::get('/authors/{author:username}', function (User $author) {
+    
+    $posts = $author->posts;
+    
     return view('posts',compact('posts'));
 });
 
