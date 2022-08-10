@@ -1,9 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Models\Post;
-use App\Models\Category;
 use App\Models\User;
+use App\Models\Category;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,27 +17,11 @@ use App\Models\User;
 |
 */
 
-Route::get('/', function () {
-    
-    $posts = Post::latest()->get();
-    $categories = Category::all();
-    return view('posts',compact('posts','categories'));
-})->name('home');
+Route::get('/', [PostController::class,'index'])->name('home');
 
-Route::get('/posts/{post:slug}', function (Post $post) {
-    // get a post using its slug and return a view
-    
-    return view('post',compact('post'));
+Route::get('/posts/{post:slug}', [PostController::class,'show']);
 
-});
 
-Route::get('/categories/{category:slug}', function (Category $category) {
-    
-    $posts = $category->posts;
-    $categories = Category::all();
-    $currentCategory = $category;
-    return view('posts',compact('posts','categories', 'currentCategory'));
-})->name('category');
 Route::get('/authors/{author:username}', function (User $author) {
     
     $posts = $author->posts;
