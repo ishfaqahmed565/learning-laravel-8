@@ -6,6 +6,7 @@
                 @if($posts->count())         
 
                     <x-posts-grid :posts='$posts'/>
+                    {{$posts->links()}}
                 @else
 
                     <p>

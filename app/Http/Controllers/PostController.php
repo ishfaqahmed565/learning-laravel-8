@@ -16,7 +16,7 @@ class PostController extends Controller
        //Filter is like the filter machine and filters are like conditons of the required data. Filters are used inside the filter machine to set the conditions of a required specific data.
        //and get() method is like the messenger that takes the query to the database and returns the data back to the website.
             
-            $posts = Post::latest()->filter(request(['search','category']))->get();
+            $posts = Post::latest()->filter(request(['search','category','author']))->paginate(6)->withQueryString();
             return view('posts.index',compact('posts'));
     
         } 

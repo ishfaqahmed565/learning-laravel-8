@@ -14,15 +14,16 @@ class User extends Authenticatable
     public function posts(){
         return $this->hasMany(Post::class);
     }
+    public function setPasswordAttribute($password){
+        $this->attributes['password'] = bcrypt($password);
+    }
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
+    protected $guarded = [
+        
     ];
 
     /**
