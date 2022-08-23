@@ -5,6 +5,20 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
+<style>
+    html {
+  scroll-behavior: smooth;
+}
+
+    .clamp{
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    .clamp.one-line{
+        -webkit-line-clamp:1;
+    }
+</style>
 <body style="font-family: Open Sans, sans-serif">
     <section class="px-6 py-8">
         <nav class="md:flex md:justify-between md:items-center">
@@ -14,10 +28,17 @@
                 </a>
             </div>
 
-            <div class="mt-8 md:mt-0">
-                <a href="/" class="text-xs font-bold uppercase">Home Page</a>
+            <div class="mt-8 md:mt-0 flex items-center">
+                @auth
+                
+                <x-settings-dropdown/>
+               
+                @else
+                <a href="/login" class="text-xs font-bold uppercase mr-6">Login</a>
+                <a href="/register" class="text-xs font-bold uppercase">Register</a>
+                @endAuth
 
-                <a href="#" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+                <a href="#newsletter" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
                     Subscribe for Updates
                 </a>
             </div>
@@ -34,14 +55,18 @@
             <div class="mt-10">
                 <div class="relative inline-block mx-auto lg:bg-gray-200 rounded-full">
 
-                    <form method="POST" action="#" class="lg:flex text-sm">
+                    <form method="POST" action="/newsletter" id='newsletter' class="lg:flex text-sm">
+                        @csrf
                         <div class="lg:py-3 lg:px-5 flex items-center">
                             <label for="email" class="hidden lg:inline-block">
                                 <img src="/images/mailbox-icon.svg" alt="mailbox letter">
                             </label>
 
-                            <input id="email" type="text" placeholder="Your email address"
-                                   class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none">
+                            <input id="email" name='email' type="email" placeholder="Your email address"
+                                   class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none" >
+                                   @error('email') 
+                                    <p class='text-red-500 text-xm mt-2'>{{$message}}</p>
+                                @endError
                         </div>
 
                         <button type="submit"

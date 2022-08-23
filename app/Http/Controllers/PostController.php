@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class PostController extends Controller
 {
+    
     public function index(){
        
        //Post::latest() is a query
@@ -17,6 +19,7 @@ class PostController extends Controller
        //and get() method is like the messenger that takes the query to the database and returns the data back to the website.
             
             $posts = Post::latest()->filter(request(['search','category','author']))->paginate(6)->withQueryString();
+            
             return view('posts.index',compact('posts'));
     
         } 
@@ -26,4 +29,6 @@ class PostController extends Controller
         
         return view('posts.show',compact('post'));
     }
+    
+    
 }
