@@ -56,6 +56,6 @@
         </div>
     </div>
 </div>
- </x-setting>
+</x-setting>
 </x-layout>
 

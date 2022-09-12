@@ -1,5 +1,4 @@
-
-                    <x-dropdown>
+<x-dropdown>
 
                         <x-slot name='trigger'>
                                 <button

@@ -25,7 +25,7 @@
                             Log Out
                         </x-dropdown-item>
 
-                        <form action="/logout" id="logout-form"method='POST' class='hidden' >
+                        <form action="/logout" id="logout-form" method='POST' class='hidden' >
                     @csrf
 
                 </form>

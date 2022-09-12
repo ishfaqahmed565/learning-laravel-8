@@ -6,6 +6,6 @@
                            name='{{$name}}'
                            id='{{$name}}'
                           
-                    >
+                    />
                     <x-form.error name="{{$name}}"/>
 </x-form.field>
